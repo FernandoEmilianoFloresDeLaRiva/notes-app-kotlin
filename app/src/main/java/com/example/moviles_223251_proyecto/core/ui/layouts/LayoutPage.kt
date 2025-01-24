@@ -6,7 +6,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.moviles_223251_proyecto.routes.data.Routes
-import com.example.moviles_223251_proyecto.shared.navbar.NavBar
+import com.example.moviles_223251_proyecto.core.ui.composables.navbar.NavBar
 
 @Composable
 fun LayoutPage(

@@ -19,7 +19,7 @@ fun IndexRouter(modifier: Modifier = Modifier) {
     }
     Moviles_223251_proyectoTheme {
         when (routerValue.value){
-            Routes.LoginRoute.route -> LoginView()
+            Routes.LoginRoute.route -> LoginView(routerValue)
             Routes.RegisterRoute -> Text(text = "RegisterPage")
             Routes.HomeRoute.route -> LayoutPage(
                 children = { Text(text = "Home Page") },

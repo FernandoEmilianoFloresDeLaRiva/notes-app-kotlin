@@ -1,4 +1,4 @@
-package com.example.moviles_223251_proyecto.shared.navbar
+package com.example.moviles_223251_proyecto.core.ui.composables.navbar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.moviles_223251_proyecto.routes.data.Routes
-import com.example.moviles_223251_proyecto.shared.navbar.composables.itembar.ItemBar
+import com.example.moviles_223251_proyecto.core.ui.composables.navbar.composables.itembar.ItemBar
 
 @Composable
 fun NavBar(

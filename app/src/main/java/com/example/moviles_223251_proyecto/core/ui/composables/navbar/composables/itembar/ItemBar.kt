@@ -1,4 +1,4 @@
-package com.example.moviles_223251_proyecto.shared.navbar.composables.itembar
+package com.example.moviles_223251_proyecto.core.ui.composables.navbar.composables.itembar
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
