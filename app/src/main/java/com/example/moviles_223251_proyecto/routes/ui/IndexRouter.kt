@@ -19,10 +19,18 @@ fun IndexRouter(modifier: Modifier = Modifier) {
     }
     Moviles_223251_proyectoTheme {
         when (routerValue.value){
-            Routes.LoginRoute.route -> Text(text = "LoginPage")
+            Routes.LoginRoute.route -> LoginView()
             Routes.RegisterRoute -> Text(text = "RegisterPage")
-            Routes.HomeRoute.route -> LayoutPage(children = { LoginView() })
-            Routes.CreateRoute.route -> Text(text = "CreateRoute")
+            Routes.HomeRoute.route -> LayoutPage(
+                children = { Text(text = "Home Page") },
+                selectedRoute = routerValue.value,
+                onChangeRoute = { routerValue.value = it }
+            )
+            Routes.CreateRoute.route -> LayoutPage(
+                children = { Text(text = "Create Route") },
+                selectedRoute = routerValue.value,
+                onChangeRoute = { routerValue.value = it }
+            )
         }
     }
 }

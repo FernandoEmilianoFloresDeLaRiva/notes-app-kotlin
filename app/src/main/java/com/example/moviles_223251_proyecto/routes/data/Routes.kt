@@ -12,5 +12,5 @@ object Routes {
     val HomeRoute = NavItem("Home", "home", Icons.Outlined.Home)
     val CreateRoute = NavItem("Create", "create", Icons.Outlined.AddCircle)
 
-    val pages = listOf<NavItem>(LoginRoute, HomeRoute, CreateRoute)
+    val pages = listOf<NavItem>(HomeRoute, CreateRoute, LoginRoute)
 }
