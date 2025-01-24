@@ -1,4 +1,4 @@
-package com.example.moviles_223251_proyecto.shared.ui
+package com.example.moviles_223251_proyecto.shared.ui.customtext
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

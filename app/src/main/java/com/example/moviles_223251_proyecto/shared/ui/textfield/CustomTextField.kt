@@ -1,4 +1,4 @@
-package com.example.moviles_223251_proyecto.shared.ui
+package com.example.moviles_223251_proyecto.shared.ui.textfield
 
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors

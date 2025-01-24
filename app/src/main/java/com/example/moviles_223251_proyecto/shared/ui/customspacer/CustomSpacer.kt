@@ -1,4 +1,4 @@
-package com.example.moviles_223251_proyecto.shared.ui
+package com.example.moviles_223251_proyecto.shared.ui.customspacer
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.runtime.Composable

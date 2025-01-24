@@ -1,4 +1,4 @@
-package com.example.moviles_223251_proyecto.shared.ui
+package com.example.moviles_223251_proyecto.shared.ui.clickabletext
 
 import androidx.compose.foundation.clickable
 import androidx.compose.material3.Text

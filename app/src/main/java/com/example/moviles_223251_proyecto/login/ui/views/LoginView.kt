@@ -25,10 +25,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.moviles_223251_proyecto.routes.data.Routes
-import com.example.moviles_223251_proyecto.shared.ui.ClickableText
-import com.example.moviles_223251_proyecto.shared.ui.CustomSpacer
-import com.example.moviles_223251_proyecto.shared.ui.CustomText
-import com.example.moviles_223251_proyecto.shared.ui.CustomTextField
+import com.example.moviles_223251_proyecto.shared.ui.clickabletext.ClickableText
+import com.example.moviles_223251_proyecto.shared.ui.customspacer.CustomSpacer
+import com.example.moviles_223251_proyecto.shared.ui.customtext.CustomText
+import com.example.moviles_223251_proyecto.shared.ui.textfield.CustomTextField
 
 @Composable
 fun LoginView(
