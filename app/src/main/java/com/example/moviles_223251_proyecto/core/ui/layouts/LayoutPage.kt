@@ -10,7 +10,7 @@ import com.example.moviles_223251_proyecto.core.ui.composables.navbar.NavBar
 
 @Composable
 fun LayoutPage(
-    children : @Composable () -> Unit,
+    content : @Composable (Modifier) -> Unit,
     selectedRoute : String = Routes.HomeRoute.route,
     onChangeRoute : (String) -> Unit
 ) {
@@ -24,9 +24,6 @@ fun LayoutPage(
                 })
         }
     ){
-        innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding)){
-            children()
-        }
+        content(Modifier.padding(it))
     }
 }
