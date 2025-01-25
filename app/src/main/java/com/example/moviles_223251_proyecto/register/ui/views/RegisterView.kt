@@ -1,4 +1,4 @@
-package com.example.moviles_223251_proyecto.login.ui.views
+package com.example.moviles_223251_proyecto.register.ui.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,10 +35,22 @@ import com.example.moviles_223251_proyecto.shared.ui.customtext.CustomText
 import com.example.moviles_223251_proyecto.shared.ui.textfield.CustomTextField
 
 @Composable
-fun LoginView(
+fun RegisterView(
     routerValue : MutableState<String>
 ) {
     val textFields = listOf(
+        TextFieldConfig(
+            value = "",
+            onValueChange = { },
+            label = "Username",
+            leadingIcon = {
+                Image(
+                    imageVector = Icons.Filled.AccountCircle,
+                    contentDescription = "User icon",
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
+                )
+            }
+        ),
         TextFieldConfig(
             value = "",
             onValueChange = { },
@@ -62,14 +74,16 @@ fun LoginView(
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
                 )
             }
-        )
+        ),
     )
     LayoutAuth(
         textFields = textFields,
-        layoutTitle = "¡Ingresa a tus notas!",
-        primaryButtonTitle = "Inicia Sesión",
+        layoutTitle = "¡Registrate!",
+        primaryButtonTitle = "Crea tu cuenta",
         primaryButtonAction = {  },
-        secondaryButtonTitle = "¿No cuentas con una cuenta?",
-        secondaryButtonAction = { routerValue.value = Routes.RegisterRoute }
+        secondaryButtonTitle = "¿Ya tienes una cuenta?, Inicia Sesión",
+        secondaryButtonAction = {
+            routerValue.value = Routes.LoginRoute.route
+        },
     )
 }

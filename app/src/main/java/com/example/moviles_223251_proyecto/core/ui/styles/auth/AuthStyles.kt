@@ -1,4 +1,4 @@
-package com.example.moviles_223251_proyecto.login.ui.views
+package com.example.moviles_223251_proyecto.core.ui.styles.auth
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 
-object LoginViewStyles {
+object AuthCommonStyles {
     fun boxStyle(colorScheme: ColorScheme): Modifier {
         return Modifier
             .padding(horizontal = 20.dp, vertical = 50.dp)

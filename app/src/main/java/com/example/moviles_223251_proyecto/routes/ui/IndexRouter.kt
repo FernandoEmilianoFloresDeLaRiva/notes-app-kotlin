@@ -9,6 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.moviles_223251_proyecto.core.ui.layouts.LayoutPage
 import com.example.moviles_223251_proyecto.core.ui.theme.Moviles_223251_proyectoTheme
 import com.example.moviles_223251_proyecto.login.ui.views.LoginView
+import com.example.moviles_223251_proyecto.register.ui.views.RegisterView
 import com.example.moviles_223251_proyecto.routes.data.Routes
 
 @Preview
@@ -20,7 +21,7 @@ fun IndexRouter(modifier: Modifier = Modifier) {
     Moviles_223251_proyectoTheme {
         when (routerValue.value){
             Routes.LoginRoute.route -> LoginView(routerValue)
-            Routes.RegisterRoute -> Text(text = "RegisterPage")
+            Routes.RegisterRoute -> RegisterView(routerValue)
             Routes.HomeRoute.route -> LayoutPage(
                 children = { Text(text = "Home Page") },
                 selectedRoute = routerValue.value,
