@@ -4,14 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.moviles_223251_proyecto.core.navigation.IndexRouter
+import com.example.moviles_223251_proyecto.core.vmprovider.states.ViewModelManagerProvider
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            App()
+            ViewModelManagerProvider(context = this) {
+                App()
+            }
         }
     }
 }
