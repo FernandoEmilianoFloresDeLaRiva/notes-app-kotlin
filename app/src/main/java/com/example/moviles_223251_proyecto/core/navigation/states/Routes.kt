@@ -1,4 +1,4 @@
-package com.example.moviles_223251_proyecto.routes.data
+package com.example.moviles_223251_proyecto.core.navigation.states
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AddCircle

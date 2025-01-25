@@ -9,16 +9,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.moviles_223251_proyecto.routes.data.Routes
+import com.example.moviles_223251_proyecto.core.navigation.states.LocalRouter
+import com.example.moviles_223251_proyecto.core.navigation.states.Routes
+import com.example.moviles_223251_proyecto.core.navigation.states.currentRoute
+import com.example.moviles_223251_proyecto.core.navigation.states.navigateTo
 import com.example.moviles_223251_proyecto.core.ui.composables.navbar.composables.itembar.ItemBar
 
 @Composable
-fun NavBar(
-    selectedRoute : String = Routes.HomeRoute.route,
-    onChange : (String) -> Unit
-) {
+fun NavBar() {
+    val route = LocalRouter.current
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier
@@ -31,9 +31,9 @@ fun NavBar(
         for(page in Routes.pages) {
             ItemBar(
                 page,
-                selected = selectedRoute == page.route,
+                selected = route.currentRoute() == page.route,
                 modifier = Modifier.clickable {
-                    onChange(page.route)
+                    route.navigateTo(page.route)
                 }
             )
         }

@@ -1,43 +1,25 @@
 package com.example.moviles_223251_proyecto.login.ui.views
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.moviles_223251_proyecto.core.domain.TextFieldConfig
+import com.example.moviles_223251_proyecto.core.navigation.states.LocalRouter
 import com.example.moviles_223251_proyecto.core.ui.layouts.LayoutAuth
-import com.example.moviles_223251_proyecto.core.ui.styles.auth.AuthCommonStyles
-import com.example.moviles_223251_proyecto.routes.data.Routes
-import com.example.moviles_223251_proyecto.shared.ui.clickabletext.ClickableText
-import com.example.moviles_223251_proyecto.shared.ui.customspacer.CustomSpacer
-import com.example.moviles_223251_proyecto.shared.ui.customtext.CustomText
-import com.example.moviles_223251_proyecto.shared.ui.textfield.CustomTextField
+import com.example.moviles_223251_proyecto.core.navigation.states.Routes
+import com.example.moviles_223251_proyecto.core.navigation.states.navigateTo
 
 @Composable
 fun LoginView(
-    routerValue : MutableState<String>
+    router: MutableState<String> = LocalRouter.current
 ) {
+
     val textFields = listOf(
         TextFieldConfig(
             value = "",
@@ -70,6 +52,8 @@ fun LoginView(
         primaryButtonTitle = "Inicia Sesión",
         primaryButtonAction = {  },
         secondaryButtonTitle = "¿No cuentas con una cuenta?",
-        secondaryButtonAction = { routerValue.value = Routes.RegisterRoute }
+        secondaryButtonAction = {
+            router.navigateTo(Routes.RegisterRoute)
+        }
     )
 }
