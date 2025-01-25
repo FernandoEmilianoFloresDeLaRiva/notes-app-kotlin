@@ -14,51 +14,15 @@ import com.example.moviles_223251_proyecto.core.navigation.states.LocalRouter
 import com.example.moviles_223251_proyecto.core.ui.layouts.LayoutAuth
 import com.example.moviles_223251_proyecto.core.navigation.states.Routes
 import com.example.moviles_223251_proyecto.core.navigation.states.navigateTo
+import com.example.moviles_223251_proyecto.core.vmprovider.states.LocalViewModelProvider
 
 @Composable
 fun RegisterView(
     router: MutableState<String> = LocalRouter.current
 ) {
-    val textFields = listOf(
-        TextFieldConfig(
-            value = "",
-            onValueChange = { },
-            label = "Username",
-            leadingIcon = {
-                Image(
-                    imageVector = Icons.Filled.AccountCircle,
-                    contentDescription = "User icon",
-                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
-                )
-            }
-        ),
-        TextFieldConfig(
-            value = "",
-            onValueChange = { },
-            label = "Email",
-            leadingIcon = {
-                Image(
-                    imageVector = Icons.Filled.Email,
-                    contentDescription = "Email icon",
-                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
-                )
-            }
-        ),
-        TextFieldConfig(
-            value = "",
-            onValueChange = { },
-            label = "Password",
-            leadingIcon = {
-                Image(
-                    imageVector = Icons.Filled.Lock,
-                    contentDescription = "Lock icon",
-                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
-                )
-            }
-        ),
-    )
+    val registerViewModel = LocalViewModelProvider.current.registerViewModel
     LayoutAuth(
-        textFields = textFields,
+        textFields = registerViewModel.getTextFields(),
         layoutTitle = "¡Registrate!",
         primaryButtonTitle = "Crea tu cuenta",
         primaryButtonAction = {  },

@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.moviles_223251_proyecto.login.ui.viewmodels.LoginViewModel
+import com.example.moviles_223251_proyecto.register.ui.viewmodels.RegisterViewModel
 
 class ViewModelManager(private val context: Context) {
 
@@ -35,5 +36,9 @@ class ViewModelManager(private val context: Context) {
 
     val loginViewModel: LoginViewModel by lazy {
         getViewModel(LoginViewModel::class.java)
+    }
+
+    val registerViewModel: RegisterViewModel by lazy {
+        getViewModel(RegisterViewModel::class.java)
     }
 }
