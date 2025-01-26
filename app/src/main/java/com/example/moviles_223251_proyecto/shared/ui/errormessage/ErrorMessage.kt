@@ -15,10 +15,10 @@ import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun ErrorMessage(message: String) {
+fun ErrorMessage(message: String, modifier: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.errorContainer)
             .padding(18.dp)

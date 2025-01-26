@@ -55,7 +55,7 @@ fun NoteItem(
             )
             CustomSpacer(Modifier.height(18.dp))
             CustomText(
-                text = note.created_at,
+                text = note.getFormattedDate(),
                 color = MaterialTheme.colorScheme.primaryContainer,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,

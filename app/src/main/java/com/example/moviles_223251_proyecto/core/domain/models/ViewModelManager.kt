@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import com.example.moviles_223251_proyecto.home.ui.viewmodels.HomeViewModel
 import com.example.moviles_223251_proyecto.login.ui.viewmodels.LoginViewModel
 import com.example.moviles_223251_proyecto.register.ui.viewmodels.RegisterViewModel
 
@@ -40,5 +41,9 @@ class ViewModelManager(private val context: Context) {
 
     val registerViewModel: RegisterViewModel by lazy {
         getViewModel(RegisterViewModel::class.java)
+    }
+
+    val homeViewModel: HomeViewModel by lazy {
+        getViewModel(HomeViewModel::class.java)
     }
 }

@@ -11,13 +11,15 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun Loader() {
+fun Loader(
+    modifier : Modifier = Modifier
+) {
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ){
         CircularProgressIndicator(
-            modifier = Modifier.size(80.dp),
+            modifier = modifier.size(80.dp),
             strokeWidth = 10.dp,
             strokeCap = StrokeCap.Round,
         )
