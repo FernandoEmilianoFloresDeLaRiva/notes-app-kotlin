@@ -10,7 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.lifecycle.AndroidViewModel
-import com.example.moviles_223251_proyecto.core.domain.TextFieldConfig
+import com.example.moviles_223251_proyecto.core.domain.models.TextFieldConfig
 import com.example.moviles_223251_proyecto.register.domain.dtos.RegisterUserDto
 
 class RegisterViewModel( app : Application) : AndroidViewModel(app) {

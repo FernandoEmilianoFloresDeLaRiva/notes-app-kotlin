@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.moviles_223251_proyecto.core.navigation.IndexRouter
 import com.example.moviles_223251_proyecto.core.navigation.states.RouterProvider
-import com.example.moviles_223251_proyecto.core.navigation.states.Routes
+import com.example.moviles_223251_proyecto.core.domain.constants.Routes
 import com.example.moviles_223251_proyecto.core.ui.theme.Moviles_223251_proyectoTheme
 
 @Composable

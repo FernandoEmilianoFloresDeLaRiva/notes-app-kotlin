@@ -1,4 +1,4 @@
-package com.example.moviles_223251_proyecto.core.domain
+package com.example.moviles_223251_proyecto.core.domain.models
 
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel

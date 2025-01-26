@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.moviles_223251_proyecto.core.domain.TextFieldConfig
+import com.example.moviles_223251_proyecto.core.domain.models.TextFieldConfig
 import com.example.moviles_223251_proyecto.core.ui.styles.auth.AuthCommonStyles
 import com.example.moviles_223251_proyecto.shared.ui.clickabletext.ClickableText
 import com.example.moviles_223251_proyecto.shared.ui.customspacer.CustomSpacer

@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.moviles_223251_proyecto.core.navigation.states.Routes
 import com.example.moviles_223251_proyecto.core.ui.composables.navbar.NavBar
 
 @Composable

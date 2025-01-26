@@ -1,10 +1,10 @@
-package com.example.moviles_223251_proyecto.core.navigation.states
+package com.example.moviles_223251_proyecto.core.domain.constants
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AddCircle
 import androidx.compose.material.icons.outlined.ExitToApp
 import androidx.compose.material.icons.outlined.Home
-import com.example.moviles_223251_proyecto.core.domain.NavItem
+import com.example.moviles_223251_proyecto.core.domain.models.NavItem
 
 object Routes {
     val RegisterRoute = "register"

@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.moviles_223251_proyecto.core.domain.NavItem
+import com.example.moviles_223251_proyecto.core.domain.models.NavItem
 
 @Composable
 fun ItemBar(

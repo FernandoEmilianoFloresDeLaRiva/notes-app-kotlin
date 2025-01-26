@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.moviles_223251_proyecto.core.navigation.states.LocalRouter
-import com.example.moviles_223251_proyecto.core.navigation.states.Routes
+import com.example.moviles_223251_proyecto.core.domain.constants.Routes
 import com.example.moviles_223251_proyecto.core.navigation.states.currentRoute
 import com.example.moviles_223251_proyecto.core.navigation.states.navigateTo
 import com.example.moviles_223251_proyecto.core.ui.composables.navbar.composables.itembar.ItemBar
