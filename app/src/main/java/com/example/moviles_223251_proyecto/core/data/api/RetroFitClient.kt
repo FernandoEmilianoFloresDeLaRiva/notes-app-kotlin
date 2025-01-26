@@ -1,13 +1,34 @@
 package com.example.moviles_223251_proyecto.core.data.api
 
+import android.content.Context
+import com.example.moviles_223251_proyecto.core.SharedPreference.TokenProvider
+import com.example.moviles_223251_proyecto.core.data.api.interceptors.AuthInterceptor
 import com.example.moviles_223251_proyecto.core.domain.constants.ApiConfig
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object RetroFitClient {
+
+    private lateinit var tokenProvider: TokenProvider
+
+    fun init(ctx : Context){
+        tokenProvider = TokenProvider(ctx)
+    }
+
+    private val okHttpClient: OkHttpClient by lazy {
+        OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor(tokenProvider))
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .build()
+    }
+
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(ApiConfig.API_BASE_URL)
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
