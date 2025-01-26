@@ -10,13 +10,20 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.moviles_223251_proyecto.core.domain.models.TextFieldConfig
+import com.example.moviles_223251_proyecto.register.data.services.RegisterService
 import com.example.moviles_223251_proyecto.register.domain.dtos.RegisterUserDto
+import com.example.moviles_223251_proyecto.register.domain.models.RegisterState
+import kotlinx.coroutines.launch
 
 class RegisterViewModel( app : Application) : AndroidViewModel(app) {
     private val email = mutableStateOf("")
     private val password = mutableStateOf("")
     private val username = mutableStateOf("")
+    private val registerService = RegisterService()
+    val registerState = mutableStateOf<RegisterState>(RegisterState.Idle)
+
 
     fun getTextFields () : List<TextFieldConfig> {
         return listOf(
@@ -59,7 +66,36 @@ class RegisterViewModel( app : Application) : AndroidViewModel(app) {
         )
     }
 
-    fun getRegisterUserDto() : RegisterUserDto {
+    private fun getRegisterUserDto() : RegisterUserDto {
         return RegisterUserDto(username = username.value, email = email.value, password = password.value)
+    }
+
+    fun registerUser() {
+        val registerUserDto = getRegisterUserDto()
+
+        if (registerUserDto.isValid()) {
+           viewModelScope.launch {
+                registerState.value = RegisterState.Loading
+                val result = registerService.register(registerUserDto)
+
+                result.fold(
+                    onSuccess = { registerResponse ->
+                        registerState.value = RegisterState.Success(registerResponse)
+                    },
+                    onFailure = { exception ->
+                        registerState.value = RegisterState.Error(exception.message ?: "Error desconocido")
+                    }
+                )
+                username.value = ""
+                email.value = ""
+                password.value = ""
+           }
+        }else{
+            registerState.value = RegisterState.Error("Credenciales no son válidas")
+        }
+    }
+
+    fun restartRegisterState() {
+        registerState.value = RegisterState.Idle
     }
 }

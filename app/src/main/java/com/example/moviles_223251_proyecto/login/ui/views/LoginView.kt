@@ -11,6 +11,7 @@ import com.example.moviles_223251_proyecto.core.vmprovider.states.LocalViewModel
 import com.example.moviles_223251_proyecto.login.domain.models.LoginState
 import com.example.moviles_223251_proyecto.shared.ui.errormessage.ErrorMessage
 import com.example.moviles_223251_proyecto.shared.ui.loader.Loader
+import com.example.moviles_223251_proyecto.shared.ui.successmessage.SuccessMessage
 
 @Composable
 fun LoginView(
@@ -18,10 +19,6 @@ fun LoginView(
 ) {
     val loginViewModel = LocalViewModelProvider.current.loginViewModel
     val loginState by loginViewModel.loginState
-
-    if (loginState is LoginState.Success) {
-        router.navigateTo(Routes.HomeRoute.route)
-    }
 
     LayoutAuth(
         textFields = loginViewModel.getTextFields(),
@@ -33,6 +30,12 @@ fun LoginView(
             router.navigateTo(Routes.RegisterRoute)
         }
     )
+
+    if (loginState is LoginState.Success) {
+        SuccessMessage(message = "Inicio de sesión exitoso")
+        router.navigateTo(Routes.HomeRoute.route)
+        loginViewModel.restartLoginState()
+    }
 
     if(loginState is LoginState.Loading){
         Loader()

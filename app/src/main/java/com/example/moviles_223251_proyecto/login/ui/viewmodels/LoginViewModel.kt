@@ -68,15 +68,20 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
                 result.fold(
                     onSuccess = { tokenResponse ->
                         loginState.value = LoginState.Success(tokenResponse)
-
                     },
                     onFailure = { exception ->
                         loginState.value = LoginState.Error(exception.message ?: "Error desconocido")
                     }
                 )
+                email.value = ""
+                password.value = ""
             }
         } else {
             loginState.value = LoginState.Error("Email o contraseña inválida")
         }
+    }
+
+    fun restartLoginState() {
+        loginState.value = LoginState.Idle
     }
 }
