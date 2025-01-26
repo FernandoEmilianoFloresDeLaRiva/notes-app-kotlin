@@ -10,12 +10,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-//import com.example.moviles_223251_proyecto.core.data.local.databaseapp.AppDatabase
-//import com.example.moviles_223251_proyecto.core.data.local.user.entities.User
+import com.example.moviles_223251_proyecto.core.data.local.appDatabase.AppDatabase
+import com.example.moviles_223251_proyecto.core.data.local.users.entities.User
 import com.example.moviles_223251_proyecto.core.domain.models.TextFieldConfig
-import com.example.moviles_223251_proyecto.core.navigation.states.LocalRouter
 import com.example.moviles_223251_proyecto.login.data.services.LoginService
-import com.example.moviles_223251_proyecto.login.domain.adapters.TokenResponseAdapter
 import com.example.moviles_223251_proyecto.login.domain.adapters.UserAdapter
 import com.example.moviles_223251_proyecto.login.domain.dtos.LoginUserDto
 import com.example.moviles_223251_proyecto.login.domain.models.LoginState
@@ -27,7 +25,7 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
     private val password = mutableStateOf("")
     private val loginService = LoginService()
     val loginState = mutableStateOf<LoginState>(LoginState.Idle)
-//    private val userDao = AppDatabase.getDatabase(app).userDao()
+    private val userDao = AppDatabase.getDatabase(app).userDao()
 
     fun getTextFields(): List<TextFieldConfig> {
         return listOf(
@@ -72,7 +70,7 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
 
                 result.fold(
                     onSuccess = { tokenResponse ->
-//                        verifyAndUpdateUser(tokenResponse.user, tokenResponse.token)
+                        verifyAndUpdateUser(tokenResponse.user, tokenResponse.token)
                         loginState.value = LoginState.Success(tokenResponse)
                     },
                     onFailure = { exception ->
@@ -91,24 +89,23 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
         loginState.value = LoginState.Idle
     }
 
-//   private fun verifyAndUpdateUser(user : UserAdapter, token: String) {
-//        viewModelScope.launch {
-//            val existingUser = userDao.getUserById(user.id)
-//            if (existingUser != null) {
-//                updateUserToken(existingUser, token)
-//            } else {
-//                createNewUser(user, token)
-//            }
-//        }
-//    }
-//
-//    private suspend fun updateUserToken(user: User, token: String) {
-//        user.token = token
-//        userDao.updateUserToken(user.id, token)
-//    }
-//
-//    private suspend fun createNewUser(reqUser: UserAdapter, token: String) {
-//        val newUser = User(id = reqUser.id, username = reqUser.username, email = reqUser.email, token = token)
-//        userDao.insertUser(newUser)
-//    }
+   private fun verifyAndUpdateUser(user : UserAdapter, token: String) {
+        viewModelScope.launch {
+            val existingUser = userDao.getUserById(user.id)
+            if (existingUser != null) {
+                updateUserToken(existingUser, token)
+            } else {
+                createNewUser(user, token)
+            }
+        }
+    }
+
+    private suspend fun updateUserToken(user: User, token: String) {
+        userDao.updateUserToken(user.id, token)
+    }
+
+    private suspend fun createNewUser(reqUser: UserAdapter, token: String) {
+        val newUser = User(id = reqUser.id, username = reqUser.username, email = reqUser.email, token = token)
+        userDao.insertUser(newUser)
+    }
 }
