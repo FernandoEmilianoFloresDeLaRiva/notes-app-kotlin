@@ -16,4 +16,7 @@ interface UserDAO {
 
     @Query("UPDATE users SET token = :token WHERE id = :userId")
     suspend fun updateUserToken(userId: Int, token: String)
+
+    @Query("SELECT * FROM users")
+    suspend fun getAllUsers(): List<User>
 }

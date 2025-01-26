@@ -10,8 +10,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.moviles_223251_proyecto.core.SharedPreference.UserPreference.UserPreferences
 import com.example.moviles_223251_proyecto.core.data.local.appDatabase.AppDatabase
 import com.example.moviles_223251_proyecto.core.data.local.users.entities.User
+import com.example.moviles_223251_proyecto.core.data.repository.users.UserRepository
 import com.example.moviles_223251_proyecto.core.domain.models.TextFieldConfig
 import com.example.moviles_223251_proyecto.login.data.services.LoginService
 import com.example.moviles_223251_proyecto.login.domain.adapters.UserAdapter
@@ -26,6 +28,8 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
     private val loginService = LoginService()
     val loginState = mutableStateOf<LoginState>(LoginState.Idle)
     private val userDao = AppDatabase.getDatabase(app).userDao()
+    private val userPreferences = UserPreferences(app)
+    private val userRepository = UserRepository(userPreferences, userDao)
 
     fun getTextFields(): List<TextFieldConfig> {
         return listOf(
@@ -97,6 +101,7 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
             } else {
                 createNewUser(user, token)
             }
+            userRepository.saveUserId(user.id)
         }
     }
 
