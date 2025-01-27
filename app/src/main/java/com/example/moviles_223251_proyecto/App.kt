@@ -10,7 +10,7 @@ import com.example.moviles_223251_proyecto.core.ui.theme.Moviles_223251_proyecto
 @Composable
 fun App(modifier: Modifier = Modifier) {
     Moviles_223251_proyectoTheme {
-        RouterProvider(Routes.LoginRoute.route){
+        RouterProvider(Routes.HomeRoute.route){
             IndexRouter()
         }
     }
