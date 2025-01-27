@@ -5,11 +5,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.moviles_223251_proyecto.core.ui.composables.navbar.NavBar
+import com.example.moviles_223251_proyecto.core.ui.composables.topbar.TopBar
 
 @Composable
-fun LayoutPage(content : @Composable (Modifier) -> Unit, ) {
+fun LayoutPage(content : @Composable (Modifier) -> Unit, username : String = "") {
     Scaffold(
-        topBar = {},
+        topBar = { TopBar( username)},
         bottomBar = { NavBar() }
     ){
         content(Modifier.padding(it))

@@ -4,10 +4,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -21,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.moviles_223251_proyecto.core.domain.models.TextFieldConfig
 import com.example.moviles_223251_proyecto.core.ui.styles.LayoutAppForm.LayoutAppFormStyles
-import com.example.moviles_223251_proyecto.core.ui.styles.auth.AuthCommonStyles
 import com.example.moviles_223251_proyecto.shared.ui.customspacer.CustomSpacer
 import com.example.moviles_223251_proyecto.shared.ui.customtext.CustomText
 import com.example.moviles_223251_proyecto.shared.ui.textfield.CustomTextField
@@ -39,6 +39,7 @@ fun LayoutFormApp(
         modifier = LayoutAppFormStyles.boxStyle(modifier, MaterialTheme.colorScheme)
     ) {
         Column(
+            modifier = Modifier.verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

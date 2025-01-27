@@ -14,6 +14,7 @@ fun HomePage() {
     val homeViewModel = LocalViewModelProvider.current.homeViewModel
     val homeState by homeViewModel.homeState
     LayoutPage(
+        username = homeViewModel.username.value,
         content = { modifier ->
             if (homeState is HomeState.Loading){
                 Loader(modifier = modifier)
