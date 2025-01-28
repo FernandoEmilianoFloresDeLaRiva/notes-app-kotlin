@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         RetroFitClient.init(this)
         setContent {
             ViewModelManagerProvider(context = this) {
-                App()
+                App(ctx = this)
             }
         }
     }

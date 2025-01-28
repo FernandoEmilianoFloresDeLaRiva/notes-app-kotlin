@@ -19,4 +19,17 @@ class TokenProvider(context: Context) {
             user?.token ?: ""
         }
     }
+
+    fun clearToken() {
+        runBlocking {
+            val userId = userRepository.getUserId()
+            userRepository.logout()
+            if (userId != null) {
+                val user = userDAO.getUserById(userId)
+                if (user != null) {
+                    userDAO.deleteUser(userId) // Elimina el usuario de la base de datos
+                }
+            }
+        }
+    }
 }

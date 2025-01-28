@@ -25,7 +25,7 @@ class HomeViewModel(app : Application) : AndroidViewModel(app) {
         getNotes()
     }
 
-    private fun getNotes () {
+    fun getNotes () {
         viewModelScope.launch {
             homeState.value = HomeState.Loading
             val result = getNotesService.getNotesService(userId.intValue)
@@ -47,5 +47,9 @@ class HomeViewModel(app : Application) : AndroidViewModel(app) {
             val user = userDao.getUserById(userId.intValue)
             username.value = user?.username ?: ""
         }
+    }
+
+    fun restartState() {
+        homeState.value = HomeState.Idle
     }
 }

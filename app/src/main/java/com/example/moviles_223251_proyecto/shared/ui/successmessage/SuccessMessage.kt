@@ -14,10 +14,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun SuccessMessage(message: String) {
+fun SuccessMessage(
+    message: String,
+    modifier: Modifier = Modifier
+) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.surface)
             .padding(18.dp)

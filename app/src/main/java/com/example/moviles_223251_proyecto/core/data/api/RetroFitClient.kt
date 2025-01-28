@@ -3,6 +3,7 @@ package com.example.moviles_223251_proyecto.core.data.api
 import android.content.Context
 import com.example.moviles_223251_proyecto.core.SharedPreference.TokenProvider
 import com.example.moviles_223251_proyecto.core.data.api.interceptors.AuthInterceptor
+import com.example.moviles_223251_proyecto.core.data.api.interceptors.ResponseInterceptor
 import com.example.moviles_223251_proyecto.core.domain.constants.ApiConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -20,6 +21,7 @@ object RetroFitClient {
     private val okHttpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
             .addInterceptor(AuthInterceptor(tokenProvider))
+            .addInterceptor(ResponseInterceptor(tokenProvider))
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .build()
