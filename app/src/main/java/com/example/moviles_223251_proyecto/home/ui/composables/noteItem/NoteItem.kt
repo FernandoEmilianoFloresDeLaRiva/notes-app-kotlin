@@ -18,6 +18,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,7 +41,7 @@ fun NoteItem(
     note : NoteResponseAdapter
 ) {
     val ctx = LocalContext.current
-    val textToSpeechHelper = rememberSaveable{ TextToSpeechHelper(ctx) }
+    val textToSpeechHelper = remember{ TextToSpeechHelper(ctx) }
     Box(
         modifier = Modifier
             .padding(horizontal = 20.dp, vertical = 10.dp)
@@ -81,7 +83,7 @@ fun NoteItem(
             Button(
                 onClick = {
                     textToSpeechHelper.speak(
-                        "Titulo ${note.title} Descripción ${note.description} Fecha ${note.getFormattedDate()}"
+                        "Titulo ${note.title}, Descripción ${note.description}, Creado el: ${note.getFormattedDate()}"
                     )
                 },
                 colors = ButtonDefaults.buttonColors(
@@ -99,6 +101,12 @@ fun NoteItem(
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                 )
             }
+        }
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            textToSpeechHelper.release()
         }
     }
 }
