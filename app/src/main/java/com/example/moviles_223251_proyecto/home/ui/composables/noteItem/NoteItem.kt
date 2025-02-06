@@ -5,28 +5,29 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -42,6 +43,8 @@ fun NoteItem(
 ) {
     val ctx = LocalContext.current
     val textToSpeechHelper = remember{ TextToSpeechHelper(ctx) }
+    var isPlaying by rememberSaveable { mutableStateOf(false) }
+
     Box(
         modifier = Modifier
             .padding(horizontal = 20.dp, vertical = 10.dp)
@@ -82,9 +85,14 @@ fun NoteItem(
             )
             Button(
                 onClick = {
-                    textToSpeechHelper.speak(
-                        "Titulo ${note.title}, Descripción ${note.description}, Creado el: ${note.getFormattedDate()}"
-                    )
+                    if (isPlaying) {
+                        textToSpeechHelper.stop()
+                    } else {
+                        textToSpeechHelper.speak(
+                            "Título: ${note.title}, Descripción: ${note.description}, Creado el: ${note.getFormattedDate()}"
+                        )
+                    }
+                    isPlaying = !isPlaying
                 },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Transparent,
@@ -96,8 +104,8 @@ fun NoteItem(
                 contentPadding = PaddingValues(0.dp)
             ) {
                 Image(
-                    imageVector = Icons.Filled.PlayArrow,
-                    contentDescription = "Play",
+                    imageVector = if (isPlaying) Icons.Filled.Stop else Icons.Filled.PlayArrow,
+                    contentDescription = if (isPlaying) "Stop" else "Play",
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                 )
             }
