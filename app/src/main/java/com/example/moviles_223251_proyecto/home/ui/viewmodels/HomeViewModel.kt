@@ -10,6 +10,7 @@ import com.example.moviles_223251_proyecto.core.SharedPreference.UserPreference.
 import com.example.moviles_223251_proyecto.core.data.local.appDatabase.AppDatabase
 import com.example.moviles_223251_proyecto.core.data.local.users.dao.UserDAO
 import com.example.moviles_223251_proyecto.home.data.services.GetNotesService
+import com.example.moviles_223251_proyecto.home.domain.adapters.NoteResponseAdapter
 import com.example.moviles_223251_proyecto.home.domain.models.HomeState
 import kotlinx.coroutines.launch
 
@@ -21,6 +22,7 @@ class HomeViewModel(app : Application) : AndroidViewModel(app) {
     private val getNotesService = GetNotesService()
     private var userId = mutableIntStateOf(0)
     val searchQuery = mutableStateOf("")
+    private val orignalNotes = mutableListOf<NoteResponseAdapter>()
 
     init {
         getUsername()
@@ -34,7 +36,9 @@ class HomeViewModel(app : Application) : AndroidViewModel(app) {
 
             result.fold(
                 onSuccess = { notesResponse ->
-                    homeState.value = HomeState.Success(notesResponse)
+                    orignalNotes.clear()
+                    orignalNotes.addAll(notesResponse)
+                    homeState.value = HomeState.Success(orignalNotes)
                 },
                 onFailure = { exception ->
                     homeState.value = HomeState.Error(exception.message ?: "Error desconocido")
@@ -60,7 +64,7 @@ class HomeViewModel(app : Application) : AndroidViewModel(app) {
         viewModelScope.launch {
             val currentState = homeState.value
             if (currentState is HomeState.Success) {
-                val filteredNotes = currentState.notesResponse.filter {
+                val filteredNotes = orignalNotes.filter {
                     it.title.contains(query, ignoreCase = true) ||
                             it.description.contains(query, ignoreCase = true)
                 }
@@ -68,6 +72,12 @@ class HomeViewModel(app : Application) : AndroidViewModel(app) {
             } else {
                 homeState.value = HomeState.Error("No hay notas disponibles para buscar.")
             }
+        }
+    }
+
+    fun restoreNotes() {
+        viewModelScope.launch {
+            homeState.value = HomeState.Success(orignalNotes)
         }
     }
 }

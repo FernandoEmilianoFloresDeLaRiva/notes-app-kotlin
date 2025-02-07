@@ -59,6 +59,13 @@ fun HomePage() {
                     Icon(Icons.Default.Mic, contentDescription = "Buscar por voz")
                     Text("Buscar por voz")
                 }
+
+                Button(
+                    onClick = { homeViewModel.restoreNotes() },
+                    modifier = Modifier.padding(8.dp)
+                ) {
+                    Text("Mostrar todas las notas")
+                }
                 when (homeState) {
                     is HomeState.Loading -> {
                         Loader(modifier = modifier)
