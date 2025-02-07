@@ -19,7 +19,7 @@ class VoiceSearchUtil(val ctx : Context, val onResult : (String) -> Unit) {
                 }
 
                 override fun onBeginningOfSpeech() {
-                    Log.d("VoiceSearch", "Comienza el habla")
+                    Log.d("VoiceSearch", "Comienza a escuchar")
                 }
 
                 override fun onRmsChanged(rmsdB: Float) {}
@@ -36,7 +36,7 @@ class VoiceSearchUtil(val ctx : Context, val onResult : (String) -> Unit) {
                     val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                     if (!matches.isNullOrEmpty()) {
                         val recognizedText = matches[0]
-                        onResult(recognizedText) // Enviar el texto reconocido
+                        onResult(recognizedText)
                     }
                 }
 

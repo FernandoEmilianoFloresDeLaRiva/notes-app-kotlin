@@ -1,6 +1,7 @@
 package com.example.moviles_223251_proyecto.home.ui.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
@@ -19,6 +20,7 @@ class HomeViewModel(app : Application) : AndroidViewModel(app) {
     private val userDao = AppDatabase.getDatabase(app).userDao()
     private val getNotesService = GetNotesService()
     private var userId = mutableIntStateOf(0)
+    val searchQuery = mutableStateOf("")
 
     init {
         getUsername()
@@ -51,5 +53,21 @@ class HomeViewModel(app : Application) : AndroidViewModel(app) {
 
     fun restartState() {
         homeState.value = HomeState.Idle
+    }
+
+    fun searchNotesByVoice(query: String) {
+        searchQuery.value = query
+        viewModelScope.launch {
+            val currentState = homeState.value
+            if (currentState is HomeState.Success) {
+                val filteredNotes = currentState.notesResponse.filter {
+                    it.title.contains(query, ignoreCase = true) ||
+                            it.description.contains(query, ignoreCase = true)
+                }
+                homeState.value = HomeState.Success(filteredNotes)
+            } else {
+                homeState.value = HomeState.Error("No hay notas disponibles para buscar.")
+            }
+        }
     }
 }
